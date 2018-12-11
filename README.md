@@ -10,6 +10,7 @@ After setting up database setting and hosting connection, run migrations in cons
 
 ```PHP
  index.php db:migrate
+ ```
  
  I've presetted user access, menus and materials basic data
  
