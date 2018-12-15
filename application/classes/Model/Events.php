@@ -2,7 +2,7 @@
 
 class Model_Events extends Model
 {
-    protected $_tableMenu = 'photogallery';
+    protected $_tableMenu = 'events';
 
     public function get_all($lang)
     {

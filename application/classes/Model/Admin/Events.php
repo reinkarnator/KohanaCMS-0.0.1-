@@ -1,8 +1,8 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Model_Admin_Photogallery extends Model {
+class Model_Admin_Events extends Model {
 
-      protected $_tableArticles = 'photogallery';
+      protected $_tableArticles = 'events';
 
       public function get_all(){
 

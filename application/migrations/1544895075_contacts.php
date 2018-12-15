@@ -10,26 +10,24 @@
 * add_index($table_name, $index_name, $columns, $index_type = 'normal')
 * remove_index($table_name, $index_name)
 */
-class Materials extends Migration {
+class Contacts extends Migration {
 
 	public function up()
 	{
-
 	    $langslist = Kohana::$config->load('lang')->get('langsList');
 	    $lang_cols['id'] = 'primary_key';
 
  	    foreach ($langslist as $langs) {
-	    	$lang_cols['title_'.$langs] = array('string', 'null' => FALSE);
-	    	$lang_cols['text_'.$langs] = array('text', 'null' => TRUE);
-	    	$lang_cols['pg_description_'.$langs] = array('text', 'null' => TRUE);
-	    	$lang_cols['pg_keywords_'.$langs] = array('text', 'null' => TRUE);
+	    	$lang_cols['address_'.$langs] = array('string', 'null' => TRUE);
 	    }
 
-	    $lang_cols['gallery'] = array('text', 'null' => TRUE);
-	    $lang_cols['status'] = array('integer', 'null' => FALSE, 'default' => '1');
+	    $lang_cols['phone'] = array('string', 'null' => TRUE);
+	    $lang_cols['email'] = array('string', 'null' => TRUE);
+	    $lang_cols['mob'] = array('string', 'null' => TRUE);
+	    $lang_cols['map'] = array('text', 'null' => TRUE);
 
 
-		$this->create_table( "events", $lang_cols, array(
+		$this->create_table( "contacts", $lang_cols, array(
 				'id' => TRUE,
 				'options' => 'ENGINE=innoDB CHARSET=utf8'
 			)
@@ -38,7 +36,6 @@ class Materials extends Migration {
 
 	public function down()
 	{
-
-		$this->drop_table('materials');
+		$this->drop_table('contacts');
 	}
 }

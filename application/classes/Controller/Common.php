@@ -27,19 +27,20 @@ abstract class Controller_Common extends Controller_Template {
         $id = $this->request->param('id');
         $artname = $this->request->param('artname');
 
-        //Check if language empty, assign it config value 
+        //Check if language empty, assign it to config value 
         if (empty($lang)){
             $site_config = Kohana::$config->load('lang');
             $lang  = $site_config->get('defaultLang');
         }
 
+        $langslist = Kohana::$config->load('lang')->get('langsList');
        //Load language 
        I18n::lang($lang.'-'.$lang);
        $this->lang = $lang;
 
         $newurl = substr($this->request->uri(), 2);
 
-        // Socials      
+      /*  // Socials      
         $socials = Model::factory('Socials')->get_all();
 
         $socialsmodule = View::factory('socials/socials.tpl')
@@ -66,21 +67,27 @@ abstract class Controller_Common extends Controller_Template {
                           ->bind('lang', $lang);      
 
         $this->template->bannermodule = $bannermodule;  
-
+*/
 
         //footer form 
         /*$footerform = View::factory('footer/footerform.tpl')
                         ->bind('lang', $lang);*/      
 
-         
+        $difflang = array_filter($langslist, function($key, $val) {
+              return $val;
+        }, ARRAY_FILTER_USE_BOTH);
 
         $langselect = View::factory('header/langsel.tpl')
                         ->bind('language', $lang)    
-                        ->bind('socialsmodule', $socialsmodule);      
+                        ->bind('difflang', $difflang)     
+
+        $socials = View::factory('header/socials.tpl')  
+                        ->bind('socialsmodule', $socialsmodule);                             
 
         $this->template->langsel = $langselect;               
+        $this->template->socials = $socials;               
 
-
+/*
         // Pref product
         $prmain = Model::factory('Products')->get_item_mainpage($lang);
 
@@ -173,7 +180,7 @@ abstract class Controller_Common extends Controller_Template {
         
         //Contacts     
         $contacts = Model::factory('Contacts')->get_all($lang);
-
+*/
 /*        $contactsmodule = View::factory('contacts/contacts.tpl')
                   ->bind('lang', $lang)   
                   ->bind('last', $contacts); */   
@@ -187,7 +194,7 @@ abstract class Controller_Common extends Controller_Template {
   				  
   				  
   		  $this->template->weathercurrmodule = $weathercurrency;
-
+/*
         //Contacts data
         $this->template->phone = $contacts['phone'];
         $this->template->address = $contacts['address'];
@@ -208,7 +215,7 @@ abstract class Controller_Common extends Controller_Template {
                         ->bind('last', $yearscat);
 
         $this->template->yearscatalogue = $yearscatalogue;		
-
+*/
         //Breadcrumb
         $this->template->breadcrumb = $this->breadcrumb();
 
@@ -224,7 +231,9 @@ abstract class Controller_Common extends Controller_Template {
         $this->template->language = $lang;
         $this->template->id = $id;
     }  
+
     public function breadcrumb(){
+
         $param[0]['name'] = __('Главная',NULL);
         $param[0]['link'] = URL::base(TRUE);
       if (Request::current()->controller() == 'Menu' && Request::current()->action() != 'mainpage') {
@@ -263,6 +272,7 @@ abstract class Controller_Common extends Controller_Template {
 
       
       return $breadcrumb;
+
     }
 
 	  public function getSession() {

@@ -10,36 +10,30 @@
 * add_index($table_name, $index_name, $columns, $index_type = 'normal')
 * remove_index($table_name, $index_name)
 */
-class Menus extends Migration {
+class Catalogues extends Migration {
 
 	public function up()
 	{
-		$langslist = Kohana::$config->load('lang')->get('langsList');
+	    $langslist = Kohana::$config->load('lang')->get('langsList');
 	    $lang_cols['id'] = 'primary_key';
-	    $lang_cols['order_id'] = array('integer', 'null' => TRUE);
-	    $lang_cols['alt_title'] = array('string', 'null' => FALSE);
 
  	    foreach ($langslist as $langs) {
 	    	$lang_cols['name_'.$langs] = array('string', 'null' => FALSE);
 	    }
 
-	    $lang_cols['type'] = array('string', 'null' => FALSE, 'default' => 'top');
-	    $lang_cols['status'] = array('integer', 'null' => FALSE, 'default' => '1');
-	    $lang_cols['parent'] = array('integer', 'null' => FALSE, 'default' => '0');
-	    $lang_cols['link'] = array('string', 'null' => TRUE);
-	    $lang_cols['component'] = array('integer', 'null' => TRUE);
+	    $lang_cols['gallery'] = array('text', 'null' => FALSE);
+	    $lang_cols['year'] = array('integer', 'null' => FALSE);
 
-		$this->create_table( "menu", $lang_cols, array(
+
+		$this->create_table( "catalogues", $lang_cols, array(
 				'id' => TRUE,
 				'options' => 'ENGINE=innoDB CHARSET=utf8'
 			)
-		);	    
-
+		);
 	}
 
 	public function down()
 	{
-
-		$this->drop_table('menu');
+		$this->drop_table('catalogues');
 	}
 }

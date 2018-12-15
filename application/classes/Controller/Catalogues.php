@@ -16,7 +16,6 @@ class Controller_Catalogues extends Controller_Common {
         foreach ($news as $key => $res) {
             if ($res['gallery']){
                 $res['gallery'] = substr($res['gallery'], 1);
-
                 if(!file_exists(realpath($res['gallery']).'.jpg')) {
                     exec('convert -density 300 -background white -resize x350 '.realpath($res['gallery']).'[0]  '.realpath($res['gallery']).'.jpg');
                 }

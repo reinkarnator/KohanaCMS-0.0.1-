@@ -15,8 +15,6 @@ public function action_index()
         $elems[] = $id;
         $elems[] = str_replace(' ', '_', HTML::chars($this->request->post('alt_title')));
         $elems[] = $this->request->post('photo');
-        $elems[] = $this->request->post('pdf');
-        $elems[] = $this->request->post('video');
         $elems[] = (int)$this->request->post('status');  
         $elems[] = HTML::chars($this->request->post('parent'));
 
@@ -78,8 +76,6 @@ public function action_addremove()
 
         $elems[] = str_replace(' ', '_', HTML::chars($this->request->post('alt_title')));
         $elems[] = $this->request->post('photo');
-        $elems[] = $this->request->post('pdf');
-        $elems[] = $this->request->post('video');
         $elems[] = (int)$this->request->post('status'); 
         $elems[] = HTML::chars($this->request->post('parent')); 
 

@@ -12,19 +12,12 @@ public function action_index()
         $lang_count = $this->lang_path();
         $user = $this->user;
         $deflang  = Kohana::$config->load('lang')->get('adminLang');
-        $library = Model::factory('Admin_Library')->get_all();
 
 
         $elems[] = $id;
         $elems[] = (int)$this->request->post('menu_id');
         $elems[] = (int)$this->request->post('status');
-        $elems[] = $this->request->post('gallery');             
-        $elems[] = $this->request->post('head_addon_presentations');
-        $elems[] = $this->request->post('img_addon_presentations');
-        $elems[] = $this->request->post('head_addon_catalogue');
-        $elems[] = $this->request->post('img_addon_catalogue');
-        $elems[] = $this->request->post('head_addon_video');
-        $elems[] = $this->request->post('img_addon_video');        
+        $elems[] = $this->request->post('gallery');                    
 
 
 
@@ -86,7 +79,6 @@ public function action_addremove()
         $type = HTML::chars($this->request->controller());
         $lang_count = $this->lang_path();
         $deflang  = Kohana::$config->load('lang')->get('adminLang');
-        $library = Model::factory('Admin_Library')->get_all();
 
         foreach ($lang_count as $langs) {
               ${'title_categories_'.$langs} = HTML::chars($this->request->post('title_'.$langs));
@@ -103,13 +95,7 @@ public function action_addremove()
 
         $elems[] = (int)$this->request->post('menu_id');
         $elems[] = (int)$this->request->post('status');
-        $elems[] = $this->request->post('gallery');     
-        $elems[] = $this->request->post('head_addon_presentations');
-        $elems[] = $this->request->post('img_addon_presentations');
-        $elems[] = $this->request->post('head_addon_catalogue');
-        $elems[] = $this->request->post('img_addon_catalogue');
-        $elems[] = $this->request->post('head_addon_video');
-        $elems[] = $this->request->post('img_addon_video');        
+        $elems[] = $this->request->post('gallery');            
 
         switch ($action){
          case 'add':

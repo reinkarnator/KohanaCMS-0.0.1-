@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Controller_Admin_Photogallery extends Controller_Admin_Common {
+class Controller_Admin_Events extends Controller_Admin_Common {
 
 public function action_index()
 {
