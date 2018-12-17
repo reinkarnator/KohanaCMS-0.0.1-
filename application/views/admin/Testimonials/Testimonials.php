@@ -1,8 +1,7 @@
-
 <div class="float-right">
-    <a class="button" href="<?php echo URL::base(TRUE,TRUE).'admin/services/add'; ?>">
+    <a class="button" href="<?php echo URL::base(TRUE,TRUE).'admin/'.$type.'/add'; ?>">
 <span>
-<?php echo __("Новый материал",null); ?>
+<?php echo __("Новый отзыв",null); ?>
 <img width="12" height="9" alt="New article" tppabs="http://www.xooom.pl/work/magicadmin/images/plus-small.gif" src="<?php echo URL::base().'html/admin/images/plus-small.gif'; ?>">
 </span>
     </a>

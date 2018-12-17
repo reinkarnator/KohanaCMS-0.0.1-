@@ -45,12 +45,12 @@
 
             </div> 
             {if ($id eq '11')}
-                </div> 
-                {$map}                     
+                </div>                 
                 {$event}                     
             {/if}
         {literal}
         <script>
+        //Minimize description text
         $(function(){
                 $('div.vertical-center div').find('img, br, p').remove();
                 var trimmedString = $('div.vertical-center div').html().substr(0,500);

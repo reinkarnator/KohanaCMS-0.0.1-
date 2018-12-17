@@ -31,7 +31,7 @@ class Users extends Migration {
 		);
 
 		$this->execute(
-			"INSERT INTO `users` (`username`, `password`, `email`, `join`, `last_login`, `logins`, `photo`, `name`) VALUES('admin', '".Auth::instance()->hash_password('123456')."', '', '0', '0', '0', '', 'Admin');"
+			"INSERT INTO `users` (`username`, `password`, `email`, `join`, `last_login`, `logins`, `photo`, `name`) VALUES('admin', '".Auth::instance()->hash_password('123456')."', 'email@email.com', '0', '0', '0', '', 'Admin');"
 		);
 	}
 

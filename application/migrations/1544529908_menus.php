@@ -24,8 +24,8 @@ class Menus extends Migration {
 	    }
 
 	    $lang_cols['type'] = array('string', 'null' => FALSE, 'default' => 'top');
+	    $lang_cols['parent_id'] = array('integer', 'null' => FALSE, 'default' => '0');	    
 	    $lang_cols['status'] = array('integer', 'null' => FALSE, 'default' => '1');
-	    $lang_cols['parent'] = array('integer', 'null' => FALSE, 'default' => '0');
 	    $lang_cols['link'] = array('string', 'null' => TRUE);
 	    $lang_cols['component'] = array('integer', 'null' => TRUE);
 

@@ -12,9 +12,9 @@ public function action_index()
         $lang_count = $this->lang_path();
 
         $elems[] = $id;
-        $elems[] = $this->request->post('phone');
-        $elems[] = $this->request->post('email');
-        $elems[] = $this->request->post('mob');
+        $elems[] = HTML::chars($this->request->post('phone'));
+        $elems[] = HTML::chars($this->request->post('email'));
+        $elems[] = HTML::chars($this->request->post('mob'));
         $elems[] = $this->request->post('map');
 
         foreach ($lang_count as $langs) {

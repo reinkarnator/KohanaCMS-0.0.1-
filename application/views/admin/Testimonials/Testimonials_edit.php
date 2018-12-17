@@ -48,7 +48,7 @@
 <div class="grid_12">
 
     <div class="module">
-        <h2><span><?php echo __("Создание сервиса",null); ?></span></h2>
+        <h2><span><?php echo __("Создание отзыва",null); ?></span></h2>
 
     <div class="module-body">
     <?php switch ($action){  case 'add': ?>    
@@ -62,15 +62,7 @@
                             <div>
                                 <span class="notification n-success"><?php echo __("Сервис был изменен",null); ?></span>
                             </div>   
-    <?php break; }?> 
-        <p>                
-            <label><?php echo __("Подзаголовок",null); ?></label>
-            <?php switch ($action){  case 'add': ?>   
-            <input type="text" name="alt_title" class="required" style="width:250px;" value="" />
-            <?php break; case 'edit'; case 'update'; ?>
-            <input type="text" name="alt_title" class="required" style="width:250px;" value="<?php echo $category['alt_title']; ?>" />
-            <?php break; }?>  
-        </p>                            
+    <?php break; }?>                            
         <p>
            <fieldset> 
                     <style type="text/css">

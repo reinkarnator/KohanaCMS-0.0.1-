@@ -26,6 +26,7 @@ class Brands extends Migration {
 	    $lang_cols['photo'] = array('string', 'null' => TRUE);
 	    $lang_cols['year'] = array('integer', 'null' => FALSE);
 	    $lang_cols['status'] = array('integer', 'null' => FALSE, 'default' => '1');
+	    $lang_cols['parent'] = array('integer', 'null' => TRUE);
 
 
 		$this->create_table( "brands", $lang_cols, array(

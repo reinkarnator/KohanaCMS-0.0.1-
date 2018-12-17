@@ -1,0 +1,121 @@
+.padding110-73 {
+    padding:110px 73px;
+}
+.padding50-73 {
+    padding:50px 73px;
+}
+.padding60-170 {
+    padding: 60px 170px;
+}
+.padding60-100 {
+    padding: 40px 40px;
+}
+
+.text-italic {
+    font-style: italic !important;
+}
+
+.margin-top20 {
+    margin-top: 20px;
+}
+
+.whiteFont {
+    color: #fff !important;
+}
+
+.darkFont {
+    color: #000;
+}
+
+.font14 {
+    font-size:14px;
+}
+
+.font16 {
+    font-size: 16px;
+}
+
+.font18 {
+    font-size:18px;
+}
+
+.font20 {
+    font-size:20px;
+}
+
+.font22 {
+    font-size:22px;
+}
+
+.font24 {
+    font-size:24px;
+}
+
+.font26 {
+    font-size: 26px;
+}
+
+.font28 {
+    font-size: 28px;
+}
+
+.font30 {
+    font-size:30px;
+}
+
+.dotted-button {
+    border-bottom: 2px solid #ffffff;
+    font-size: 1.4rem;
+    color:#fff;
+    font-family: "Helvetica";
+    font-weight: 700;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-top:10px;
+}
+
+.dotted-button:hover,.dotted-button:active,.dotted-button:focus {
+    text-decoration: none;
+    color:#fff;
+    background-color:rgba(0,0,0,0.12);
+}
+
+.fill-button {
+    color: #27c39c;
+     font-family: "Helvetica";
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding:18px 46px;
+    background: #fff;
+    border-radius:40px;
+    display: inline-block;
+}
+
+.fill-button:hover,.fill-button:focus,.fill-button:active {
+    color:#27c39c;
+    text-decoration: none;
+}
+
+.flag {
+    width:20px;
+    margin-right:5px;
+}
+
+.wrapper {
+    display: block;
+    margin: 0 auto;
+    width: 1000px;
+    height: 400px;
+    position: relative;
+}
+
+.label {
+    position: absolute;
+    display: none;
+    color:#ffffff;
+    padding:10px;
+    background: rgba(44, 174, 141,0.9);
+    border-radius: 4px;
+    font-size:16px;
+}

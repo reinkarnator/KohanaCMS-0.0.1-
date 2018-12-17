@@ -24,10 +24,8 @@ public function action_index()
 
         foreach ($lang_count as $langs) {
               ${'title_categories_'.$langs} = HTML::chars($this->request->post('name_'.$langs));
-              ${'description_categories_'.$langs} = HTML::chars($this->request->post('description_'.$langs));
 
               $dyn_elems[0][] = ${'title_categories_'.$langs};
-              $dyn_elems[1][] = ${'description_categories_'.$langs}; 
         }
 
         switch ($action){
@@ -73,10 +71,8 @@ public function action_addremove()
 
         foreach ($lang_count as $langs) {
               ${'title_categories_'.$langs} = HTML::chars($this->request->post('name_'.$langs));
-              ${'description_categories_'.$langs} = HTML::chars($this->request->post('description_'.$langs));
 
-              $dyn_elems[0][] = ${'title_categories_'.$langs};
-              $dyn_elems[1][] = ${'description_categories_'.$langs}; 
+              $dyn_elems[0][] = ${'title_categories_'.$langs}; 
         }
 
         $order_id   = $this->request->post('order_id');

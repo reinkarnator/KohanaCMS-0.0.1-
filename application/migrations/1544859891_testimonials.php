@@ -17,7 +17,6 @@ class Testimonials extends Migration {
 
 	    $langslist = Kohana::$config->load('lang')->get('langsList');
 	    $lang_cols['id'] = 'primary_key';
-	    $lang_cols['alt_title'] = array('string', 'null' => FALSE);
 
  	    foreach ($langslist as $langs) {
 	    	$lang_cols['name_'.$langs] = array('string', 'null' => FALSE);

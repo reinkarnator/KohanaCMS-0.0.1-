@@ -23,15 +23,19 @@ class Model_Admin_Brands extends Model_Admin_ModelPresets {
       }   
 
 
-      public function get_parents($id = NULL){
+      public function get_others($id = NULL){
+
           $deflang = Kohana::$config->load('lang')->get('adminLang');  
 
           if ($id == NULL) {
+
             $query = DB::select('id','alt_title',array('name_'.$deflang, 'name'))
                     ->from($this->_tableArticles)
                     ->order_by('id','ASC') 
                     ->execute();   
+
           } else {
+
             $query = DB::select('id','alt_title',array('name_'.$deflang, 'name'))
                     ->from($this->_tableArticles)
                     ->where('id','<>',':id')
@@ -71,19 +75,15 @@ class Model_Admin_Brands extends Model_Admin_ModelPresets {
       public function update_element($lang_count,$elems,$dyn_elems){
    
         $id = $elems[0];
-        $alt = $elems[1];       
-        $photo = $elems[2];       
-        $pdf = $elems[3];
-        $video = $elems[4];
-        $status = $elems[5];
-        $parent = $elems[6];
+        $alt = $this->str2url($dyn_elems[0][0]);       
+        $photo = $elems[1];       
+        $status = $elems[2];
+        $parent = $elems[3];
 
 
         $update = DB::update($this->_tableArticles)
                  ->set(array('alt_title'=>$alt))
                  ->set(array('photo'=>$photo))
-                 ->set(array('pdf'=>$photo))
-                 ->set(array('video'=>$photo))
                  ->set(array('status'=>$status))
                  ->set(array('parent'=>$parent));
         
@@ -130,16 +130,14 @@ class Model_Admin_Brands extends Model_Admin_ModelPresets {
       public function save_element($lang_count,$elems,$dyn_elems){
 
     
-        $alt = $elems[0];       
-        $photo = $elems[1];       
-        $pdf = $elems[2];
-        $video = $elems[3];
-        $status = $elems[4];
-        $parent = $elems[5];
+        $alt = $this->str2url($dyn_elems[0][0]);    
+        $photo = $elems[0];       
+        $status = $elems[1];
+        $parent = $elems[2];
 
          $sql = DB::insert($this->_tableArticles);
-         $col = array('alt_title','photo','pdf','video','status','parent');
-         $val = array($alt,$photo,$pdf,$video,$status,$parent);
+         $col = array('alt_title','photo','status','parent');
+         $val = array($alt,$photo,$status,$parent);
 
          foreach ($lang_count as $key => $langs) {
 

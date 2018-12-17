@@ -1,4 +1,5 @@
 {if ($last)}
+  <!--- Static links -->
   <ul>
 	   <li style="width: calc(14.2% - 5px)">
 				<h4>{__("Cərrahiyyə",NULL)}</h4>
@@ -20,14 +21,16 @@
 				<h4>{__("Ortopediya",NULL)}</h4>
 				<img src="{URL::base(TRUE)}/html/upload/images/ct-5.jpg" alt="{__("Ortopediya",NULL)}" />
 		</li>		
-	   <li style="width: calc(14.2% - 5px)">
+	    <li style="width: calc(14.2% - 5px)">
 				<h4>{__("Periodontologiya",NULL)}</h4>
 				<img src="{URL::base(TRUE)}/html/upload/images/ct-6.jpg" alt="{__("Periodontologiya",NULL)}" />
 		</li>		
-	   <li style="width: calc(14.2% - 5px)">
+	    <li style="width: calc(14.2% - 5px)">
 				<h4>{__("Laboratoriya",NULL)}</h4>
 				<img src="{URL::base(TRUE)}/html/upload/images/ct-7.jpg" alt="{__("Laboratoriya",NULL)}" />
-		</li>		
+		</li>
+
+	 <!-- if you need dynamic -->		
      <!--{$z=0}
      {foreach from=$last key=k item=news_item}
          {$z=$z+1}

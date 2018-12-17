@@ -26,8 +26,8 @@ class Model_Admin_Contacts extends Model_Admin_ModelPresets {
    
           $id = $elems[0];
           $phone = $elems[1];
-          $mob = $elems[3];          
-          $email = $elems[2];          
+          $mob = $elems[2];          
+          $email = $elems[3];          
           $map = $elems[4];          
 
           $update = DB::update($this->_tableArticles)

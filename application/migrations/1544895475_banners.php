@@ -23,7 +23,7 @@ class Banners extends Migration {
 	    }
 
 	    $lang_cols['type'] = array('string', 'null' => FALSE);
-	    $lang_cols['url'] = array('string', 'null' => TRUE);
+	    $lang_cols['url'] = array('string', 'null' => FALSE);
 	    $lang_cols['img_link'] = array('string', 'null' => FALSE);
 
 		$this->create_table( "banner", $lang_cols, array(

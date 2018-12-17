@@ -2,8 +2,8 @@
 	    <div class="row">
 		{$z = 0}
 		{foreach from=$last key=k item=news_item}	
-		{$z = $z+1}
-		 {if $z==1}  
+			{$z = $z+1}
+			{if $z==1}  
 	            <div class="col-xs-5">
 	                <div class="media">
 	                    <div class="media-left" style="vertical-align: middle;">
@@ -17,7 +17,7 @@
 	                </div>
 	            </div>  
 	            <div class="col-xs-2"></div>
-	     {else}
+		    {else}
 	            <div class="col-xs-5">
 	                <div class="media">
 	                    <div class="media-left" style="vertical-align: middle;">
@@ -30,24 +30,24 @@
 	                    </div>
 	                </div>
 	            </div>
-	     {/if}       	
+		    {/if}       	
 		{/foreach}
 		</div>
 		<div class="row">
 		{$j = 0}	
 		{foreach from=$last key=k item=news_item}	  
-		{$j = $j+1}
-		 {if $j==1}  
-            <div class="col-xs-5">
-                <a href="{URL::base(TRUE)}{$lang}/products/{$news_item['brand']}/{$news_item['id']}-{$news_item['alt_title']}" class="fill-button fill-button-addon" style="float: right;">
-                	{__("Detailed",NULL)}</a> <!--Service button-->
-            </div>  
-            <div class="col-xs-2"></div>
-	     {else}
-            <div class="col-xs-5">
-                <a href="{URL::base(TRUE)}{$lang}/products/{$news_item['brand']}/{$news_item['id']}-{$news_item['alt_title']}" class="fill-button fill-button-addon" style="float: right;">{__("Detailed",NULL)}</a> <!--Service button-->
-            </div>
-	     {/if}       	
+			{$j = $j+1}
+			{if ($j==1)}  
+	            <div class="col-xs-5">
+	                <a href="{URL::base(TRUE)}{$lang}/products/{$news_item['brand']}/{$news_item['id']}-{$news_item['alt_title']}" class="fill-button fill-button-addon" style="float: right;">
+	                	{__("Detailed",NULL)}</a> <!--Service button-->
+	            </div>  
+	            <div class="col-xs-2"></div>
+		    {else}
+	            <div class="col-xs-5">
+	                <a href="{URL::base(TRUE)}{$lang}/products/{$news_item['brand']}/{$news_item['id']}-{$news_item['alt_title']}" class="fill-button fill-button-addon" style="float: right;">{__("Detailed",NULL)}</a> <!--Service button-->
+	            </div>
+		    {/if}       	
 		{/foreach}          	
 		</div>
 	</div>

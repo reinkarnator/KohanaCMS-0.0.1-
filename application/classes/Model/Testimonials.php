@@ -6,7 +6,7 @@ class Model_Testimonials extends Model
 
     public function get_all($lang)
     {
-        $query = DB::select('id','alt_title',array('name_'.$lang,'name'),array('text_'.$lang,'text'),'photo','status')
+        $query = DB::select('id',array('name_'.$lang,'name'),array('text_'.$lang,'text'),'photo','status')
                     ->from($this->_tableMenu)            
                     ->where('status','=','1')              
                     ->order_by('id', 'ASC')     

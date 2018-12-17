@@ -10,10 +10,9 @@ public function action_index()
         $artname = HTML::chars($this->request->param('artname'));
         $type = HTML::chars($this->request->controller());
         $lang_count = $this->lang_path();
-        $parents = Model::factory('Admin_'.$type)->get_parents($id);
+        $others = Model::factory('Admin_'.$type)->get_others($id);
 
         $elems[] = $id;
-        $elems[] = str_replace(' ', '_', HTML::chars($this->request->post('alt_title')));
         $elems[] = $this->request->post('photo');
         $elems[] = (int)$this->request->post('status');  
         $elems[] = HTML::chars($this->request->post('parent'));
@@ -38,7 +37,7 @@ public function action_index()
                    ->bind('artname',$artname)
                    ->bind('lang_count',$lang_count)
                    ->bind('lang',$deflang)
-                   ->bind('parents',$parents)
+                   ->bind('others',$others)
                    ->bind('id',$id);
           $categories = Model::factory('Admin_'.$type)->get_element($id);
           $this->template->content = $content;
@@ -51,7 +50,7 @@ public function action_index()
                    ->bind('artname',$artname)
                    ->bind('lang_count',$lang_count)
                    ->bind('lang',$deflang)   
-                   ->bind('parents',$parents)                 
+                   ->bind('others',$others)                 
                    ->bind('id',$id);
          $categories = Model::factory('Admin_'.$type)->update_element($lang_count,$elems,$dyn_elems);
          $this->template->content = $content;
@@ -71,10 +70,8 @@ public function action_addremove()
         $id = HTML::chars($this->request->param('id'));
         $type = HTML::chars($this->request->controller());
         $lang_count = $this->lang_path();
-        $parents = Model::factory('Admin_'.$type)->get_parents();
+        $others = Model::factory('Admin_'.$type)->get_others();
 
-
-        $elems[] = str_replace(' ', '_', HTML::chars($this->request->post('alt_title')));
         $elems[] = $this->request->post('photo');
         $elems[] = (int)$this->request->post('status'); 
         $elems[] = HTML::chars($this->request->post('parent')); 
@@ -94,7 +91,7 @@ public function action_addremove()
                     ->bind('action',$action)
                     ->bind('lang_count',$lang_count)
                     ->bind('lang',$deflang)
-                    ->bind('parents',$parents)
+                    ->bind('others',$others)
                     ->bind('category',$categories);
          $categories = Model::factory('Admin_'.$type)->add_element();
          $this->template->content = $content;

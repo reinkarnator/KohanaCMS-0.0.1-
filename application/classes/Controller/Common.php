@@ -71,7 +71,8 @@ abstract class Controller_Common extends Controller_Template {
 
         //footer form 
         /*$footerform = View::factory('footer/footerform.tpl')
-                        ->bind('lang', $lang);*/      
+                        ->bind('lang', $lang);*/ 
+
 
         $difflang = array_filter($langslist, function($key, $val) {
               return $val;
@@ -79,13 +80,13 @@ abstract class Controller_Common extends Controller_Template {
 
         $langselect = View::factory('header/langsel.tpl')
                         ->bind('language', $lang)    
-                        ->bind('difflang', $difflang)     
+                        ->bind('difflang', $difflang);     
 
         $socials = View::factory('header/socials.tpl')  
                         ->bind('socialsmodule', $socialsmodule);                             
 
         $this->template->langsel = $langselect;               
-        $this->template->socials = $socials;               
+      //  $this->template->socials = $socials;               
 
 /*
         // Pref product

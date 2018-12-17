@@ -28,7 +28,6 @@ public function up()
 	    $lang_cols['photo_position'] = array('integer', 'null' => FALSE);  
 	    $lang_cols['mainpage'] = array('integer', 'null' => FALSE);  
 	    $lang_cols['status'] = array('integer', 'null' => FALSE, 'default' => '1');
-	    $lang_cols['parent'] = array('integer', 'null' => FALSE, 'default' => '0');
 
 		$this->create_table( "products", $lang_cols, array(
 				'id' => TRUE,

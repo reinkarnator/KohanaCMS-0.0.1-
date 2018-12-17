@@ -62,17 +62,9 @@
                             <div>
                                 <span class="notification n-success"><?php echo __("Сервис был изменен",null); ?></span>
                             </div>   
-    <?php break; }?> 
-        <p>                
-            <label><?php echo __("Подзаголовок",null); ?></label>
-            <?php switch ($action){  case 'add': ?>   
-            <input type="text" name="alt_title" class="required" style="width:250px;" value="" />
-            <?php break; case 'edit'; case 'update'; ?>
-            <input type="text" name="alt_title" class="required" style="width:250px;" value="<?php echo $category['alt_title']; ?>" />
-            <?php break; }?>  
-        </p>                            
+    <?php break; }?>                          
   <p>
-        <label><?php echo __("Şəkilləri buraya yükləyin",null); ?></label>    
+        <label><?php echo __("Загрузить изображения",null); ?></label>    
         <?php switch ($action){  case 'add': ?>                            
                         <textarea id="files" name="gallery" readonly="readonly" onclick="openKCFinder(this)"></textarea>
                         <div id="gallery"></div>

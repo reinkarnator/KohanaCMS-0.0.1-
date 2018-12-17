@@ -12,16 +12,15 @@ public function action_index()
         $lang_count = $this->lang_path();
         $site_config = Kohana::$config->load('lang');
         $deflang  = $site_config->get('adminLang');
+        $brands = Model::factory('Brands')->get_all($deflang);
         $parents = Model::factory('Admin_'.$type)->get_parents();
 
         $elems[] = $id;
-        $elems[] = HTML::chars(str_replace(' ','_',$this->request->post('alt_title')));
         $elems[] = HTML::chars($this->request->post('brand'));
         $elems[] = $this->request->post('photo');
         $elems[] = $this->request->post('photo_position');
         $elems[] = $this->request->post('mainpage');      
         $elems[] = (int)$this->request->post('status'); 
-        $elems[] = HTML::chars($this->request->post('parent'));
 
 
         foreach ($lang_count as $langs) {
@@ -48,7 +47,6 @@ public function action_index()
                      ->bind('id',$id);
             
             $categories = Model::factory('Admin_'.$type)->get_element($id);
-            $brands = Model::factory('Brands')->get_all($deflang);
             $this->template->content = $content;
          break;
          case 'update':
@@ -62,8 +60,8 @@ public function action_index()
                      ->bind('lang_count',$lang_count)
                      ->bind('lang',$deflang)                   
                      ->bind('id',$id);
+
            $categories = Model::factory('Admin_'.$type)->update_element($lang_count,$elems,$dyn_elems);
-           $brands = Model::factory('Brands')->get_all($deflang);
            $this->template->content = $content;
          break;
          case 'remove':
@@ -83,16 +81,14 @@ public function action_addremove()
         $lang_count = $this->lang_path();
         $site_config = Kohana::$config->load('lang');
         $deflang  = $site_config->get('adminLang'); 
+        $brands = Model::factory('Brands')->get_all($deflang);
         $parents = Model::factory('Admin_'.$type)->get_parents();    
 
-
-        $elems[] = HTML::chars(str_replace(' ','_',$this->request->post('alt_title')));
         $elems[] = HTML::chars($this->request->post('brand'));
         $elems[] = $this->request->post('photo');
         $elems[] = $this->request->post('photo_position');
         $elems[] = $this->request->post('mainpage');       
         $elems[] = (int)$this->request->post('status');  
-        $elems[] = HTML::chars($this->request->post('parent'));
 
         foreach ($lang_count as $langs) {
               ${'name_'.$langs} = HTML::chars($this->request->post('name_'.$langs));
@@ -113,7 +109,6 @@ public function action_addremove()
                       ->bind('category',$categories)
                       ->bind('brands',$brands);
            $categories = Model::factory('Admin_'.$type)->add_element();
-           $brands = Model::factory('Brands')->get_all($deflang);
            $this->template->content = $content;
          break;
          case 'save':

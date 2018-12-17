@@ -7,7 +7,7 @@ class Model_Products extends Model
 
     public function get_all($lang)
     {
-        $query = DB::select('id','alt_title',array('name_'.$lang,'name'),array('text_'.$lang,'text'),'photo','photo_position','mainpage','pdf','video','head_addon_presentations','img_addon_presentations','head_addon_catalogue','img_addon_catalogue','head_addon_video','img_addon_video','brand','status','parent')
+        $query = DB::select('id','alt_title',array('name_'.$lang,'name'),array('text_'.$lang,'text'),'photo','photo_position','mainpage','brand','status','parent')
                     ->from($this->_tableMenu) 
                     ->where('status','=','1')              
                     ->order_by('id', 'ASC')     
@@ -22,7 +22,7 @@ class Model_Products extends Model
     }  
     public function get_item($brand,$lang)
     {
-        $query = DB::select('id','alt_title',array('name_'.$lang,'name'),array('text_'.$lang,'text'),'photo','photo_position','mainpage','pdf','video','head_addon_presentations','img_addon_presentations','head_addon_catalogue','img_addon_catalogue','head_addon_video','img_addon_video','brand','status','parent')
+        $query = DB::select('id','alt_title',array('name_'.$lang,'name'),array('text_'.$lang,'text'),'photo','photo_position','mainpage','brand','status','parent')
                     ->from($this->_tableMenu)  
                     ->where('status','=','1') 
                     ->and_where('brand','=',':brand')            
@@ -32,19 +32,11 @@ class Model_Products extends Model
 
         $result = $query->as_array();
 
-        if($result) {
-            foreach ($result as $key => $links) {
-                $result[$key]['head_addon_presentations'] = explode("-|-", $result[$key]['head_addon_presentations']);
-                $result[$key]['img_addon_presentations'] = explode("-|-", $result[$key]['img_addon_presentations']);
-                $result[$key]['head_addon_catalogue'] = explode("-|-", $result[$key]['head_addon_catalogue']);
-                $result[$key]['img_addon_catalogue'] = explode("-|-", $result[$key]['img_addon_catalogue']);
-                $result[$key]['head_addon_video'] = explode("-|-", $result[$key]['head_addon_video']);
-                $result[$key]['img_addon_video'] = explode("-|-", $result[$key]['img_addon_video']);
-            }            
+        if($result)      
            return $result;
-        } else {
+        else 
            return FALSE;
-        }         
+                 
     }   
     public function get_brand($brand,$lang)
     {
@@ -83,7 +75,7 @@ class Model_Products extends Model
     } 	
     public function get_item_detailed($id,$lang)
     {
-        $query = DB::select('id','alt_title',array('name_'.$lang,'name'),array('text_'.$lang,'text'),'photo','photo_position','mainpage','pdf','video','head_addon_presentations','img_addon_presentations','head_addon_catalogue','img_addon_catalogue','head_addon_video','img_addon_video','brand','status','parent')
+        $query = DB::select('id','alt_title',array('name_'.$lang,'name'),array('text_'.$lang,'text'),'photo','photo_position','mainpage','brand','status','parent')
                     ->from($this->_tableMenu) 
                     ->where('status','=','1') 
                     ->and_where('id','=',':id')            
@@ -94,15 +86,8 @@ class Model_Products extends Model
 
 
         if($result) {
-           $detection = $this->childProducts($result[0]['alt_title'],$lang,$result[0]['name']);
-          if (empty($detection[0]['alt_title'])) {
-                $result[0]['head_addon_presentations'] = explode("-|-", $result[0]['head_addon_presentations']);
-                $result[0]['img_addon_presentations'] = explode("-|-", $result[0]['img_addon_presentations']);
-                $result[0]['head_addon_catalogue'] = explode("-|-", $result[0]['head_addon_catalogue']);
-                $result[0]['img_addon_catalogue'] = explode("-|-", $result[0]['img_addon_catalogue']);
-                $result[0]['head_addon_video'] = explode("-|-", $result[0]['head_addon_video']);
-                $result[0]['img_addon_video'] = explode("-|-", $result[0]['img_addon_video']);   
-                         
+          $detection = $this->childProducts($result[0]['alt_title'],$lang,$result[0]['name']);
+          if (empty($detection[0]['alt_title'])) {           
               return $result[0];
           } else {
               return $this->childProducts($result[0]['alt_title'],$lang,$result[0]['name']);
@@ -112,7 +97,7 @@ class Model_Products extends Model
         }         
     } 
     public function childProducts($id,$lang,$b_name = '') {
-        $query = DB::select('id','alt_title',array('name_'.$lang,'name'),array('text_'.$lang,'text'),'photo','photo_position','mainpage','pdf','video','head_addon_presentations','img_addon_presentations','head_addon_catalogue','img_addon_catalogue','head_addon_video','img_addon_video','brand','status','parent')
+        $query = DB::select('id','alt_title',array('name_'.$lang,'name'),array('text_'.$lang,'text'),'photo','photo_position','mainpage','brand','status','parent')
                     ->from($this->_tableMenu) 
                     ->where('status','=','1') 
                     ->and_where('parent','=',':id')            
@@ -122,15 +107,7 @@ class Model_Products extends Model
         $result = $query->as_array();
         $result[0]['bname'] = $b_name;
 
-        if($result) {
-            foreach ($result as $key => $links) {
-                $result[$key]['head_addon_presentations'] = explode("-|-", $result[$key]['head_addon_presentations']);
-                $result[$key]['img_addon_presentations'] = explode("-|-", $result[$key]['img_addon_presentations']);
-                $result[$key]['head_addon_catalogue'] = explode("-|-", $result[$key]['head_addon_catalogue']);
-                $result[$key]['img_addon_catalogue'] = explode("-|-", $result[$key]['img_addon_catalogue']);
-                $result[$key]['head_addon_video'] = explode("-|-", $result[$key]['head_addon_video']);
-                $result[$key]['img_addon_video'] = explode("-|-", $result[$key]['img_addon_video']);
-            }            
+        if($result) {          
            return $result;
         } else {
            return FALSE;

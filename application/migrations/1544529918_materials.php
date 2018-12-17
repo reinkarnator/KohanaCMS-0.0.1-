@@ -24,12 +24,13 @@ class Materials extends Migration {
 	    	$lang_cols['pg_description_'.$langs] = array('text', 'null' => TRUE);
 	    	$lang_cols['pg_keywords_'.$langs] = array('text', 'null' => TRUE);
 	    }
-
+	    
+	    $lang_cols['menu_id'] = array('integer', 'null' => FALSE);
 	    $lang_cols['gallery'] = array('text', 'null' => TRUE);
 	    $lang_cols['status'] = array('integer', 'null' => FALSE, 'default' => '1');
 
 
-		$this->create_table( "events", $lang_cols, array(
+		$this->create_table( "materials", $lang_cols, array(
 				'id' => TRUE,
 				'options' => 'ENGINE=innoDB CHARSET=utf8'
 			)

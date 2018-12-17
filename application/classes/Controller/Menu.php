@@ -38,7 +38,7 @@ class Controller_Menu extends Controller_Common {
 
         $content = View::factory('pages/Material.tpl')
             ->bind('material', $material)
-            ->bind('map', $map)
+          //  ->bind('map', $map)
             ->bind('event', $event)
             ->bind('breadcrumb', $breadcrumb)
             ->bind('id', $id)
@@ -46,11 +46,12 @@ class Controller_Menu extends Controller_Common {
 
         $material = Model::factory('Material')->get_material($id,$lang);
 
-        $map = View::factory('material/Map.tpl')
+      /*  $map = View::factory('material/Map.tpl')
             ->bind('last', $mapbase)
-            ->bind('lang', $lang);
+            ->bind('lang', $lang); 
 
         $mapbase = Model::factory('Material')->get_map($lang);
+        */
 
         $event = View::factory('material/Events.tpl')
             ->bind('last', $eventbase)
@@ -58,7 +59,7 @@ class Controller_Menu extends Controller_Common {
 
         $eventbase = Model::factory('Events')->get_latest($lang);
 
-        $events_cont = $this->request->controller('Events');
+       // $events_cont = $this->request->controller('Events');
 
         foreach($eventbase as $key => $value) {
             $eventbase[$key]['year'] = $this->get_date($eventbase[$key]['year']);

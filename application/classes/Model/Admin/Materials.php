@@ -126,31 +126,11 @@ class Model_Admin_materials extends Model_Admin_ModelPresets {
         $menu_id=$elems[1];
         $status=$elems[2];
         $gallery = $elems[3];
-        $head_addon_presentations = $elems[4];
-        $img_addon_presentations = $elems[5];        
-        $head_addon_catalogue = $elems[6];
-        $img_addon_catalogue = $elems[7];
-        $head_addon_video = $elems[8];
-        $img_addon_video = $elems[9];
-
-
-        (is_array($head_addon_presentations)) ? $head_addon_presentations = implode('-|-',$head_addon_presentations) : $head_addon_presentations = $head_addon_presentations;
-        (is_array($img_addon_presentations)) ? $img_addon_presentations = implode('-|-',$img_addon_presentations) : $img_addon_presentations = $img_addon_presentations;
-        (is_array($head_addon_catalogue)) ? $head_addon_catalogue = implode('-|-',$head_addon_catalogue) : $head_addon_catalogue = $head_addon_catalogue;
-        (is_array($img_addon_catalogue)) ? $img_addon_catalogue = implode('-|-',$img_addon_catalogue) : $img_addon_catalogue = $img_addon_catalogue;
-        (is_array($head_addon_video)) ? $head_addon_video = implode('-|-',$head_addon_video) : $head_addon_video = $head_addon_video;        
-        (is_array($img_addon_video)) ? $img_addon_video = implode('-|-',$img_addon_video) : $img_addon_video = $img_addon_video;               
 
 
         $update = DB::update($this->_tableArticles)
                  ->set(array('menu_id'=>$menu_id))
-                  ->set(array('gallery'=>$gallery))
-                  ->set(array('head_addon_presentations'=>$head_addon_presentations))
-                  ->set(array('img_addon_presentations'=>$img_addon_presentations))
-                  ->set(array('head_addon_catalogue'=>$head_addon_catalogue))
-                  ->set(array('img_addon_catalogue'=>$img_addon_catalogue))
-                  ->set(array('head_addon_video'=>$head_addon_video))
-                  ->set(array('img_addon_video'=>$img_addon_video))                 
+                  ->set(array('gallery'=>$gallery))               
                  ->set(array('status'=>$status));
 
         foreach ($lang_count as $key => $langs) {
@@ -203,8 +183,8 @@ class Model_Admin_materials extends Model_Admin_ModelPresets {
         {
             $menuData['items'][$menuItem['id']] = $menuItem;
             $menuData['parents'][$menuItem['parent_id']][] = $menuItem['id'];
-            // print_r($menuData['parents']);
         }
+        
         return $this->buildMenu(0,$menuData,0);
     }
 
@@ -213,34 +193,22 @@ class Model_Admin_materials extends Model_Admin_ModelPresets {
         $menu_id = $elems[0];
         $status=$elems[1];
         $gallery = $elems[2];
-        $head_addon_presentations = $elems[3];
-        $img_addon_presentations = $elems[4];        
-        $head_addon_catalogue = $elems[5];
-        $img_addon_catalogue = $elems[6];
-        $head_addon_video = $elems[7];
-        $img_addon_video = $elems[8];
-
-
-        (is_array($head_addon_presentations)) ? $head_addon_presentations = implode('-|-',$head_addon_presentations) : $head_addon_presentations = $head_addon_presentations;
-        (is_array($img_addon_presentations)) ? $img_addon_presentations = implode('-|-',$img_addon_presentations) : $img_addon_presentations = $img_addon_presentations;
-        (is_array($head_addon_catalogue)) ? $head_addon_catalogue = implode('-|-',$head_addon_catalogue) : $head_addon_catalogue = $head_addon_catalogue;
-        (is_array($img_addon_catalogue)) ? $img_addon_catalogue = implode('-|-',$img_addon_catalogue) : $img_addon_catalogue = $img_addon_catalogue;
-        (is_array($head_addon_video)) ? $head_addon_video = implode('-|-',$head_addon_video) : $head_addon_video = $head_addon_video;        
-        (is_array($img_addon_video)) ? $img_addon_video = implode('-|-',$img_addon_video) : $img_addon_video = $img_addon_video;                
 
          $sql = DB::insert($this->_tableArticles);
-         $col = array('menu_id','status','gallery','head_addon_presentations','img_addon_presentations','head_addon_catalogue','img_addon_catalogue','head_addon_video','img_addon_video');
-         $val = array($menu_id,$status,$gallery,$head_addon_presentations,$img_addon_presentations,$head_addon_catalogue,$img_addon_catalogue,$head_addon_video,$img_addon_video);
+         $col = array('menu_id','status','gallery');
+         $val = array($menu_id,$status,$gallery);
+
         foreach ($lang_count as $key => $langs) {
-          $col[] = 'title_'.$langs;
-          $col[] = 'text_'.$langs;
-          $col[] = 'pg_description_'.$langs;
-          $col[] = 'pg_keywords_'.$langs;
-          $val[] = $dyn_elems[0][$key];
-          $val[] = $dyn_elems[1][$key];
-          $val[] = $dyn_elems[2][$key];
-          $val[] = $dyn_elems[3][$key];
+              $col[] = 'title_'.$langs;
+              $col[] = 'text_'.$langs;
+              $col[] = 'pg_description_'.$langs;
+              $col[] = 'pg_keywords_'.$langs;
+              $val[] = $dyn_elems[0][$key];
+              $val[] = $dyn_elems[1][$key];
+              $val[] = $dyn_elems[2][$key];
+              $val[] = $dyn_elems[3][$key];
         }
+
         $sql->columns($col); 
         $sql->values($val); 
 

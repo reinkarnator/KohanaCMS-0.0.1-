@@ -6,14 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{$title}</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="description" content="Odontos"/>
+    <meta name="description" content="{$title}"/>
     <link rel="shortcut icon" href="{URL::base(TRUE)}html/favicon.ico" type="image/ico" />
     <link rel="address bar icon" href="{URL::base(TRUE)}html/favicon.ico" type="image/ico" />
     <link rel="stylesheet" href="{URL::base(TRUE)}html/fonts/fonts.css">
     <link rel="stylesheet" href="{URL::base(TRUE)}html/css/bootstrap.css">
     <link rel="stylesheet" href="{URL::base(TRUE)}html/css/lightslider.css">
     <link rel="stylesheet" href="{URL::base(TRUE)}html/css/slick.css">    
-	<link rel="stylesheet" href="{URL::base(TRUE)}html/css/stylep.css">
+	  <link rel="stylesheet" href="{URL::base(TRUE)}html/css/stylep.css">
     <link rel="stylesheet" href="{URL::base(TRUE)}html/css/colorbox.css?v=2">
     <link rel="stylesheet" href="{URL::base(TRUE)}html/css/custom.css?v=4">
     <link rel="stylesheet" href="{URL::base(TRUE)}html/css/weather-icon-animated.css">       
@@ -25,16 +25,14 @@
 </div>
 <nav class="navbar navbar-default navbar-odon">
     <div class="container-fluid">
-
         <div class="navbar-header">
             <a class="navbar-brand" href="{URL::base(TRUE)}">
                 <img src="{URL::base(TRUE)}html/img/logo.png" alt="odontos logo">
             </a>
         </div>
-
-
         <div class="collapse navbar-collapse" id="menu">
             {$menumodule}
+            {$socials}
             {$langsel}
         </div>
     </div>
@@ -62,11 +60,6 @@
             <div class="row margin-clear height100">
                 <div class="top-column">
                     {$yearsmodule}
-                   <!-- <ul class="navigation-menu">
-                        <li><div id="choosed-year"></div><a href="javascript:void(0);">2017</a></li>
-                        <li><a href="javascript:void(0);">2016</a></li>
-                        <li><a href="javascript:void(0);">2015</a></li>
-                    </ul>-->
                 </div>
             </div>
             <div class="pdf-block">
@@ -103,7 +96,6 @@
                             <p class="media-text-2"><span class="bold-text">{__("Saturday",NULL)}:</span> 11.00 - 15.00</p>
                         </div>
                     </div>
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5110.819201971738!2d49.95764225846348!3d40.38865890676695!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x403063692ffb131b%3A0xbe31e39ed9fb72cc!2sOdontos+LTD!5e0!3m2!1sru!2s!4v1516878961408" height="184" frameborder="0" style="border:0;width: 100%;" allowfullscreen></iframe>
                     <p class="address-footer"><span class="bold-text">{__("Address",NULL)}:</span> {$address}</p>
                 </div>
             </div>
@@ -121,9 +113,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xs-1">
-
-            </div>
+            <div class="col-xs-1"></div>
         </div>
     </div>
 </footer>
@@ -207,7 +197,6 @@ $(function(){
         $('.left-sidebar.events ul li a').click(function(){
             $(this).parent().prepend($('div#choosed-year'));
             var year = $(this).html();
-			//window.location.hash = year;
             $('.curr-year').html(year);
             $('.row.events').fadeOut(200);
             $('.row.events').fadeIn(200);
@@ -235,9 +224,7 @@ $(function(){
 				 $(this).prepend($('div#choosed-year'));
 			}		
 		});
-	
-    }
-    
+    }    
 });     
 $('#testimonials').slick({
       infinite: true,
@@ -252,7 +239,6 @@ $('#testimonials').slick({
 });   
 </script>
 <script src="{URL::base(TRUE)}html/js/particles.js"></script>
-<script src="{URL::base(TRUE)}html/js/app.js"></script>
-<script async type="text/javascript" src="//userlike-cdn-widgets.s3-eu-west-1.amazonaws.com/a483d68961bc61c9691bdfa3f117d7d85fbd173df7ac7f39f85c0834ef7f5553.js"></script> 
+<script src="{URL::base(TRUE)}html/js/app.js"></script> 
 </body>
 </html>

@@ -9,8 +9,10 @@ protected $_tableArticles = 'menu';
 
         $lang = Kohana::$config->load('lang')->get('adminLang');   
 
-        $query = DB::select()->from($this->_tableArticles)->order_by('parent_id')->order_by('order_id')  
-                 ->execute();
+        $query = DB::select()->from($this->_tableArticles)
+                             ->order_by('parent_id')
+                             ->order_by('order_id')  
+                             ->execute();
 
         $result = $query->as_array();
 
@@ -19,10 +21,11 @@ protected $_tableArticles = 'menu';
 
         $result_menu=$query_menu->as_array();
         $result[0]['result_menu']=$result_menu;
-            if($result)
-                return $result;
-            else
-                return FALSE;
+
+        if($result)
+            return $result;
+        else
+            return FALSE;
     }
 
     public function buildMenu($parentId,$menuData,$c,$id,$y)
@@ -34,19 +37,19 @@ protected $_tableArticles = 'menu';
         {
             foreach ($menuData['parents'][$parentId] as $itemId)
             {  
-             if ($menuData['items'][$itemId]['parent_id']==$c) {   
-               $x = str_repeat('&#8211', $y++);
-               //Selected items
-               if ($id!=0 && $menuData['items'][$itemId]['id']==$menuData['items'][$id]['parent_id']){ 
-                $html .= '<option selected value="'.$menuData['items'][$itemId]['id'].'">'.$x.$menuData['items'][$itemId]['name_'.$lang.''].'</option><span></span>';
-               }else{ 
-                $html .= '<option value="'.$menuData['items'][$itemId]['id'].'">'.$x.$menuData['items'][$itemId]['name_'.$lang.''].'</option><span></span>';
-               } 
-               //Create new elements
-                $html .=$this->buildMenu($itemId,$menuData,$menuData['items'][$itemId]['id'],$id,$y);    
-               //Make counter - to equil same level menu
-                --$y;
-             }   
+              if ($menuData['items'][$itemId]['parent_id']==$c) {   
+                 $x = str_repeat('&#8211', $y++);
+                 //Selected items
+                 if ($id!=0 && $menuData['items'][$itemId]['id']==$menuData['items'][$id]['parent_id']){ 
+                  $html .= '<option selected value="'.$menuData['items'][$itemId]['id'].'">'.$x.$menuData['items'][$itemId]['name_'.$lang.''].'</option><span></span>';
+                 }else{ 
+                  $html .= '<option value="'.$menuData['items'][$itemId]['id'].'">'.$x.$menuData['items'][$itemId]['name_'.$lang.''].'</option><span></span>';
+                 } 
+                 //Create new elements
+                  $html .=$this->buildMenu($itemId,$menuData,$menuData['items'][$itemId]['id'],$id,$y);    
+                 //Make counter - to equil same level menu
+                  --$y;
+              }   
             }
            
         }
@@ -69,33 +72,12 @@ protected $_tableArticles = 'menu';
     }
 
     public function add_element(){
-      $lang = Kohana::$config->load('lang')->get('adminLang');    
 
-      $query = DB::select()->from($this->_tableArticles)->order_by('parent_id')->order_by('name_'.$lang)
-                     ->as_assoc()
-                     ->execute();  
+        $lang = Kohana::$config->load('lang')->get('adminLang');    
 
-      $menuData = array(
-          'items' => array(),
-          'parents' => array()
-      );
-
-      foreach ($query as $menuItem)
-      {
-          $menuData['items'][$menuItem['id']] = $menuItem;
-          $menuData['parents'][$menuItem['parent_id']][] = $menuItem['id'];
-         // print_r($menuData['parents']);
-      }
-       return $this->buildMenu(0,$menuData,0,0,0);
-    }
-
-
-    public function edit_builder($id){
-      $lang = Kohana::$config->load('lang')->get('adminLang');      
-      
-      $query = DB::select()->from($this->_tableArticles)->order_by('parent_id')->order_by('name_'.$lang)
-               ->as_assoc()
-               ->execute();  
+        $query = DB::select()->from($this->_tableArticles)->order_by('parent_id')->order_by('name_'.$lang)
+                       ->as_assoc()
+                       ->execute();  
 
         $menuData = array(
             'items' => array(),
@@ -106,9 +88,36 @@ protected $_tableArticles = 'menu';
         {
             $menuData['items'][$menuItem['id']] = $menuItem;
             $menuData['parents'][$menuItem['parent_id']][] = $menuItem['id'];
-           // print_r($menuData['parents']);
         }
-      return $this->buildMenu(0,$menuData,0,$id,0);    
+        
+        return $this->buildMenu(0,$menuData,0,0,0);
+
+    }
+
+
+    public function edit_builder($id){
+
+      $lang = Kohana::$config->load('lang')->get('adminLang');      
+      
+      $query = DB::select()->from($this->_tableArticles)
+                     ->order_by('parent_id')
+                     ->order_by('name_'.$lang)
+                     ->as_assoc()
+                     ->execute();  
+
+        $menuData = array(
+            'items' => array(),
+            'parents' => array()
+        );
+
+        foreach ($query as $menuItem)
+        {
+            $menuData['items'][$menuItem['id']] = $menuItem;
+            $menuData['parents'][$menuItem['parent_id']][] = $menuItem['id'];
+        }
+
+        return $this->buildMenu(0,$menuData,0,$id,0);
+
     }
 
 
@@ -119,23 +128,25 @@ protected $_tableArticles = 'menu';
 
 
       public function edit_element($id){
-      $query = DB::select()->from($this->_tableArticles)->where('id','=',':id')
-               ->param(':id', (int)$id) 
-               ->execute();
 
-      $result = $query->as_array();
-      $result[0]['menus_all']=$this->edit_builder($id);
-      if($result)
+        $query = DB::select()->from($this->_tableArticles)->where('id','=',':id')
+                 ->param(':id', (int)$id) 
+                 ->execute();
+
+        $result = $query->as_array();
+        $result[0]['menus_all']=$this->edit_builder($id);
+
+        if($result)
             return $result[0];
-      else
+        else
             return FALSE;
+
       }
 
       public function update_element($lang_count,$dyn_elems,$elems){    
    
               $id=$elems[0];
               $alt_categories=$this->str2url($dyn_elems[0][0]);
-            //  $alt_categories=str_replace(" ","_",$alt_categories);
               $get_type=$elems[2];
               $parent=trim($elems[3]);
               $status=$elems[4];
@@ -152,20 +163,20 @@ protected $_tableArticles = 'menu';
                        ->set(array('parent_id'=>$parent))
                        ->set(array('link'=>$links))
                        ->set(array('component'=>$component));
+
               foreach ($lang_count as $key => $langs) {
                   $update->set(array('name_'.$langs => $dyn_elems[0][$key]));
-                  $update->set(array('description_'.$langs => $dyn_elems[1][$key]));
               }
 
               $update->where('id','=',':id')
-              ->param(':id', (int)$id)
-              ->execute();
+                      ->param(':id', (int)$id)
+                      ->execute();
 
 
 
               $query = DB::select()->from($this->_tableArticles)->where('id','=',':id')
-                         ->param(':id', (int)$id)
-                         ->execute();
+                                   ->param(':id', (int)$id)
+                                   ->execute();
 
               $result = $query->as_array();
               $result[0]['menus_all']=$this->edit_builder($id);
@@ -180,7 +191,6 @@ protected $_tableArticles = 'menu';
       public function save_element($lang_count,$dyn_elems,$elems){
     
               $alt_categories=$this->str2url($dyn_elems[0][0]);
-            //  $alt_categories=str_replace(" ","_",$alt_categories);
               $get_type=$elems[1];
               $parent=trim($elems[2]);
               $status=$elems[3];
@@ -188,15 +198,15 @@ protected $_tableArticles = 'menu';
               $links=$elems[5];
               $component=$elems[6];
 
-               $sql = DB::insert($this->_tableArticles);
-               $col = array('order_id','alt_title','type','parent_id','status','link','component');
-               $val = array($order,$alt_categories,$get_type,$parent,$status,$links,$component);
+              $sql = DB::insert($this->_tableArticles);
+              $col = array('order_id','alt_title','type','parent_id','status','link','component');
+              $val = array($order,$alt_categories,$get_type,$parent,$status,$links,$component);
+
               foreach ($lang_count as $key => $langs) {
-                $col[] = 'name_'.$langs;
-                $col[] = 'description_'.$langs;
-                $val[] = $dyn_elems[0][$key];
-                $val[] = $dyn_elems[1][$key];
+                  $col[] = 'name_'.$langs;
+                  $val[] = $dyn_elems[0][$key];
               }
+
               $sql->columns($col); 
               $sql->values($val); 
 
@@ -208,16 +218,18 @@ protected $_tableArticles = 'menu';
 
       public function repos_element($menu_id,$order_id){
 
-      $query = DB::update($this->_tableArticles)->set(array('order_id'=>$order_id))->where('id','=',':menu_id') 
-               ->param(':menu_id', (int)$menu_id)  
-               ->execute();
+              $query = DB::update($this->_tableArticles)
+                       ->set(array('order_id'=>$order_id))
+                       ->where('id','=',':menu_id') 
+                       ->param(':menu_id', (int)$menu_id)  
+                       ->execute();
 
       }
 
 
       public function remove_element($id){
 
-              return $sql = DB::delete($this->_tableArticles)->where('id','=',':id')
+              return DB::delete($this->_tableArticles)->where('id','=',':id')
                          ->param(':id', (int)$id)
                          ->execute();
 

@@ -43,7 +43,6 @@
                
                 <fieldset>
                     <input class="submit-green" name="saved" type="submit" value="Submit" />
-                    <input class="submit-gray"  name="back" onclick="window.location='<?php echo URL::base(TRUE,TRUE);?>admin/<?php echo $type;?>/'" type="button" value="Back" />
                 </fieldset>
             </form>
         </div> <!-- End .module-body -->

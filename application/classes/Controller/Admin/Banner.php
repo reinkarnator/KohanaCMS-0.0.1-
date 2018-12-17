@@ -12,8 +12,7 @@ public function action_index()
         $lang_count = $this->lang_path();
 
         $elems[] = $id;
-        $elems[] = HTML::chars($this->request->post('type'));
-        //$elems[] = (int)$this->request->post('width');    
+        $elems[] = HTML::chars($this->request->post('type'));    
         $elems[] = $this->request->post('url');
         $elems[] = HTML::chars($this->request->post('img_link'));
 

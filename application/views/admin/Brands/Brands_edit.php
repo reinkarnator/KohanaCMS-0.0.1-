@@ -16,28 +16,24 @@
                             <div>
                                 <span class="notification n-success"><?php echo __("Брэнд был изменен",null); ?></span>
                             </div>   
-    <?php break; }?>   
-        <p>
-            <label><?php echo __("Подзаголовок",null); ?></label>
-           <?php switch ($action){  case 'add': ?> 
-            <input type="text" id="cname3" name="alt_title" class="required" style="width:200px;"/>
-           <?php break; case 'edit'; case 'update'; ?>
-            <input type="text" id="cname3" name="alt_title" class="required" value="<?php echo $category['alt_title']; ?>" style="width:200px;"/> 
-            <?php break; }?>  
-        </p>  
+    <?php break; }?>     
         <p>            
             <label><?php echo __("Родитель",null); ?>:</label>
             <select name="parent">
                         <?php switch ($action){  case 'add': ?> 
                             <option value="0"></option> 
-                            <?php foreach ($parents as $key => $parent) { ?>
+                            <?php if ($others) {
+                                foreach ($others as $key => $parent) { ?>
                                 <option value="<?php echo $parent['id']; ?>"><?php echo $parent['name']; ?></option>
-                            <?php }  ?>    
+                            <?php } 
+                            } ?>    
                          <?php break; case 'edit'; case 'update'; ?>
                             <option value="0"></option> 
-                            <?php foreach ($parents as $key => $parent) { ?>
+                            <?php if ($others) {
+                            foreach ($others as $key => $parent) { ?>
                                 <option value="<?php echo $parent['id']; ?>" <?php echo ($category['parent'] == $parent['id']) ? 'selected="selected"' : FALSE; ?> ><?php echo $parent['name']; ?></option>
-                            <?php }  ?> 
+                            <?php } 
+                            } ?> 
                         <?php break; }?>      
             </select> 
         </p>                                    

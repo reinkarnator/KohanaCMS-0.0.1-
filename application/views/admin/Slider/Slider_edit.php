@@ -191,7 +191,7 @@
                     <input type="text" name="title_<?php echo $langs;?>" style="width:250px;" value="<?php echo $category['title_'.$langs.''] ;?>" />                    
                 <?php break; }?>
                 <br clear="all" /><br clear="all" />   
-                <label><?php echo __("Qısa təsvir",null); ?> (12 işarə)</label>
+                <label><?php echo __("Краткое описание",null); ?></label>
                 <?php switch ($action){  case 'add': ?>    
                     <input type="text" name="smalltext_<?php echo $langs;?>" maxlength="12" style="width:250px;" value="" />
                 <?php break; case 'edit'; case 'update'; ?>
@@ -206,17 +206,7 @@
                 <?php break; }?>     
                 <br clear="all" /><br clear="all" />
 
-
-               <!-- <fieldset>
-                    <label><?php echo __("Текст на",null); ?><?php echo __("Язык".$key."",null); ?></label>
-                    <?php switch ($action){  case 'add': ?>     
-                    <textarea rows="11" cols="50" name="full_<?php echo $langs;?>" class="ckeditor" id="editor<?php echo $key;?>"></textarea>
-                    <?php break; case 'edit'; case 'update'; ?>
-                    <textarea rows="11" cols="50" name="full_<?php echo $langs;?>" class="ckeditor" id="editor<?php echo $key;?>"><?php echo $category['full_'.$langs.''] ;?></textarea>                    
-                    <?php break; }?>                      
-                </fieldset>-->
                 <label><?php echo __("Текст на",null); ?><?php echo __("Язык".$key."",null); ?></label>
-                <label><b><?php echo __("(1-ci və 2-ci - 12 işarə; 3-cü - 14 işarə; 4-cü - 50dən çox işarə)",null); ?></b></label>
                 <?php switch ($action){  case 'add': ?>
                 <div class="FormElem _<?php echo $langs;?>"></div>
                 <?php break; case 'edit'; case 'update'; ?>

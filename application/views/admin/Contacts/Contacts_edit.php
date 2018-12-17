@@ -17,25 +17,25 @@
             <p>                
                     <label><?php echo __("Телефон",null); ?></label>
                 <?php switch ($action){ case 'edit'; case 'update'; ?>
-                    <input type="text" name="phone" class="required" style="width:250px;" value="<?php echo $category['phone']; ?>" />
+                    <input type="text" name="phone" style="width:250px;" value="<?php echo $category['phone']; ?>" />
                 <?php break; }?>  
             </p>
             <p>                
                     <label><?php echo __("Мобильный",null); ?></label>
                 <?php switch ($action){ case 'edit'; case 'update'; ?>
-                    <input type="text" name="mob" class="required" style="width:250px;" value="<?php echo $category['mob']; ?>" />
+                    <input type="text" name="mob" style="width:250px;" value="<?php echo $category['mob']; ?>" />
                 <?php break; }?>  
             </p>
            <p>                
                 <label><?php echo __("Email",null); ?></label>
                 <?php switch ($action){ case 'edit'; case 'update'; ?>
-                    <input type="text" name="email" class="required" style="width:250px;" value="<?php echo $category['email']; ?>" />
+                    <input type="text" name="email" style="width:250px;" value="<?php echo $category['email']; ?>" />
                 <?php break; }?>  
             </p>
             <p>                
                     <label><?php echo __("Карта",null); ?></label>
                 <?php switch ($action){ case 'edit'; case 'update'; ?>
-                    <input type="text" name="map" class="required" style="width:250px;" value="<?php echo $category['map']; ?>" />
+                    <input type="text" name="map" style="width:250px;" value="<?php echo $category['map']; ?>" />
                 <?php break; }?>  
             </p>             
              <div class="fade">
@@ -49,7 +49,7 @@
                     <?php foreach ($lang_count as $key => $langs) : $key++;?>   
                     <div id="<?php echo $key; ?>" class="item"> 
                         <p>                
-                            <label><?php echo __("Адрес на",null); ?><?php echo __("Язык".$key."",null); ?></label>
+                            <label><?php echo __("Адрес на",null); ?> <?php echo __("Язык".$key."",null); ?></label>
                             <?php switch ($action){  case 'edit'; case 'update'; ?>
                             <input type="text" name="address_<?php echo $langs;?>" class="required" style="width:750px;" value="<?php echo $category['address_'.$langs.'']; ?>" />
                             <?php break; }?>  

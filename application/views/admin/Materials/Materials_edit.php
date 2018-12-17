@@ -34,15 +34,6 @@
         padding: 1px;
         z-index: 1000;
     }    
-    #addFormElem,
-    #addFormElem1,
-    #addFormElem2 {
-        border:1px solid #fff;
-        color:#fff;
-        background: orange;
-        padding: 10px 20px;
-        cursor:pointer;
-    }
 </style> 
 <!-- Form elements -->
 <div class="grid_12">
@@ -72,38 +63,37 @@
                         <?php echo $category; ?>
                      <?php break; case 'edit'; case 'update'; ?>
                      <?php
-                                    echo '<option value="0"></option>';
-                                    if ($category['selected']['parent_id']==0){
-                                        $t='<option value="'.$category['selected']['id'].'">'.$category['selected']['name_'.$lang.''].'</option>';
-                                    }else{
-                                        $t='<option value="'.$category['selected']['id'].'">--'.$category['selected']['name_'.$lang.''].'</option>';
-                                    }
-                                    $arr=explode("<span></span>",$category['menus_all']);
-                                    // print_r($arr);
-                                    if(($key = array_search($t,$arr)) !== FALSE){
-                                        unset($arr[$key]);
-                                        if ($category['selected']['parent_id']==0){
-                                            $arr[$key]='<option value="'.$category['selected']['id'].'" selected="selected">'.$category['selected']['name_'.$lang.''].'</option>';
-                                        }else{
-                                            $arr[$key]='<option value="'.$category['selected']['id'].'" selected="selected">--'.$category['selected']['name_'.$lang.''].'</option>';
-                                        }
-                                        ksort($arr);
-                                    }
-                                    foreach ($arr as $men){
-                                        echo $men;
-                                    }
-
+                            echo '<option value="0"></option>';
+                            if ($category['selected']['parent_id']==0){
+                                $t='<option value="'.$category['selected']['id'].'">'.$category['selected']['name_'.$lang.''].'</option>';
+                            }else{
+                                $t='<option value="'.$category['selected']['id'].'">--'.$category['selected']['name_'.$lang.''].'</option>';
+                            }
+                            $arr=explode("<span></span>",$category['menus_all']);
+                            // print_r($arr);
+                            if(($key = array_search($t,$arr)) !== FALSE){
+                                unset($arr[$key]);
+                                if ($category['selected']['parent_id']==0){
+                                    $arr[$key]='<option value="'.$category['selected']['id'].'" selected="selected">'.$category['selected']['name_'.$lang.''].'</option>';
+                                }else{
+                                    $arr[$key]='<option value="'.$category['selected']['id'].'" selected="selected">--'.$category['selected']['name_'.$lang.''].'</option>';
+                                }
+                                ksort($arr);
+                            }
+                            foreach ($arr as $men){
+                                echo $men;
+                            }
                      ?> 
                     <?php break; }?>      
                      </select>
-</p>
- <br clear="all"  />
- <p>
-                    <label><?php echo __("Şəkilləri buraya yükləyin",null); ?></label>    
-        <?php switch ($action){  case 'add': ?>                            
+                    </p>
+                     <br clear="all"  />
+                     <p>
+                    <label><?php echo __("Загрузить изображение",null); ?></label>    
+                    <?php switch ($action){  case 'add': ?>                            
                         <textarea id="files" name="gallery" readonly="readonly" onclick="openKCFinder(this)"></textarea>
                         <div id="gallery"></div>
-        <?php break; case 'edit'; case 'update'; ?> 
+                    <?php break; case 'edit'; case 'update'; ?> 
                         <textarea id="files" name="gallery" readonly="readonly" onclick="openKCFinder(this)"><?php echo $category['gallery']; ?></textarea>
                         <div id="gallery">
                         <?php 
@@ -115,7 +105,7 @@
                         endif;
                         endforeach; ?>
                         </div>
-        <?php break; }?>  
+                    <?php break; }?>  
                    <script type="text/javascript">
                     var div = document.getElementById("gallery");
                     var allcounts = div.getElementsByTagName('div').length;
@@ -154,7 +144,7 @@
                     </script>                        
                 </p>                                                
                                         
- <br clear="all"  /><br clear="all"  />        
+            <br clear="all"  /><br clear="all"  />        
             <div class="fade">
                 <ul class="tabs"> 
                 <?php foreach ($lang_count as $k => $langs) : $k++;?>    
@@ -162,67 +152,65 @@
                 <?php endforeach; ?>    
                 </ul> 
 
-                 <div class="items">                      
-  <?php foreach ($lang_count as $key => $langs) : $key++;?>   
-                <div id="<?php echo $key; ?>" class="item"> 
-                <p>                
-                    <label><?php echo __("Название на",null); ?><?php echo __("Язык".$key."",null); ?></label>
-                    <?php switch ($action){  case 'add': ?>   
-                    <input type="text" name="title_<?php echo $langs;?>" class="required" style="width:250px;" value="" />
-                     <?php break; case 'edit'; case 'update'; ?>
-                    <input type="text" name="title_<?php echo $langs;?>" class="required" style="width:250px;" value="<?php echo $category['title_'.$langs.'']; ?>" />
-                     <?php break; }?>  
-                </p>
-                 <br clear="all" />
+                <div class="items">                      
+                <?php foreach ($lang_count as $key => $langs) : $key++;?>   
+                        <div id="<?php echo $key; ?>" class="item"> 
+                        <p>                
+                            <label><?php echo __("Название на",null); ?><?php echo __("Язык".$key."",null); ?></label>
+                            <?php switch ($action){  case 'add': ?>   
+                            <input type="text" name="title_<?php echo $langs;?>" class="required" style="width:250px;" value="" />
+                             <?php break; case 'edit'; case 'update'; ?>
+                            <input type="text" name="title_<?php echo $langs;?>" class="required" style="width:250px;" value="<?php echo $category['title_'.$langs.'']; ?>" />
+                             <?php break; }?>  
+                        </p>
+                         <br clear="all" />
 
-                <fieldset style="float:left;margin-right: 20px;">
-                    <label><?php echo __("Description на",null); ?><?php echo __("Язык".$key."",null); ?></label>
-                    <?php switch ($action){  case 'add': ?>
-                    <textarea rows="11" cols="30" name="pg_description_<?php echo $langs;?>"></textarea>
-                     <?php break; case 'edit'; case 'update'; ?>
-                    <textarea rows="11" cols="30" name="pg_description_<?php echo $langs;?>"><?php echo $category['pg_description_'.$langs.'']; ?></textarea>
-                     <?php break; }?>  
-                </fieldset>
+                        <fieldset style="float:left;margin-right: 20px;">
+                            <label><?php echo __("Description на",null); ?><?php echo __("Язык".$key."",null); ?></label>
+                            <?php switch ($action){  case 'add': ?>
+                            <textarea rows="11" cols="30" name="pg_description_<?php echo $langs;?>"></textarea>
+                             <?php break; case 'edit'; case 'update'; ?>
+                            <textarea rows="11" cols="30" name="pg_description_<?php echo $langs;?>"><?php echo $category['pg_description_'.$langs.'']; ?></textarea>
+                             <?php break; }?>  
+                        </fieldset>
 
-                <fieldset style="float:left;margin-right: 20px;">
-                    <label><?php echo __("Keywords на",null); ?><?php echo __("Язык".$key."",null); ?></label>
-                    <?php switch ($action){  case 'add': ?>
-                     <textarea rows="11" cols="30" name="pg_keywords_<?php echo $langs;?>"></textarea>
-                     <?php break; case 'edit'; case 'update'; ?>
-                     <textarea rows="11" cols="30" name="pg_keywords_<?php echo $langs;?>"><?php echo $category['pg_keywords_'.$langs.'']; ?></textarea>
-                     <?php break; }?> 
-                </fieldset>
-                 <br clear="all" /> 
+                        <fieldset style="float:left;margin-right: 20px;">
+                            <label><?php echo __("Keywords на",null); ?><?php echo __("Язык".$key."",null); ?></label>
+                            <?php switch ($action){  case 'add': ?>
+                             <textarea rows="11" cols="30" name="pg_keywords_<?php echo $langs;?>"></textarea>
+                             <?php break; case 'edit'; case 'update'; ?>
+                             <textarea rows="11" cols="30" name="pg_keywords_<?php echo $langs;?>"><?php echo $category['pg_keywords_'.$langs.'']; ?></textarea>
+                             <?php break; }?> 
+                        </fieldset>
+                         <br clear="all" /> 
 
-                <fieldset>
-                    <label><?php echo __("Текст на",null); ?><?php echo __("Язык".$key."",null); ?></label>
-                    <?php switch ($action){  case 'add': ?>
-<textarea rows="11" cols="50" name="text_<?php echo $langs;?>" class="ckeditor" id="editor<?php echo $key;?>"></textarea>
-                    <?php break; case 'edit'; case 'update'; ?>
-<textarea rows="11" cols="50" name="text_<?php echo $langs;?>" class="ckeditor" id="editor<?php echo $key;?>"><?php echo $category['text_'.$langs.'']; ?></textarea>
-                    <?php break; }?> 
-                </fieldset>
+                        <fieldset>
+                            <label><?php echo __("Текст на",null); ?><?php echo __("Язык".$key."",null); ?></label>
+                            <?php switch ($action){  case 'add': ?>
+                            <textarea rows="11" cols="50" name="text_<?php echo $langs;?>" class="ckeditor" id="editor<?php echo $key;?>"></textarea>
+                            <?php break; case 'edit'; case 'update'; ?>
+                            <textarea rows="11" cols="50" name="text_<?php echo $langs;?>" class="ckeditor" id="editor<?php echo $key;?>"><?php echo $category['text_'.$langs.'']; ?></textarea>
+                            <?php break; }?> 
+                        </fieldset>
 
-                </div>
-<?php endforeach; ?> 
+                        </div>
+                <?php endforeach; ?> 
                 </div> 
-
-
-                </div>                
+            </div>                
                
-                <fieldset>
-                    <ul>
-                        <?php switch ($action){  case 'add': ?>
-                    <li><label><b><?php echo __("Активность",null); ?></b>&nbsp;&nbsp;<input type="checkbox" name="status" value="1" /></label></li>
-                        <?php break; case 'edit'; case 'update'; ?>    
-                    <li><label><b><?php echo __("Активность",null); ?></b>&nbsp;&nbsp;<input type="checkbox" name="status" <?php if ($category['status']=='1'){       echo 'checked="checked"'; } ?> value="1" /></label></li>
-                        <?php break; }?> 
-                    </ul>
-                </fieldset>
-                            <fieldset>
-                                <input class="submit-green" name="saved" type="submit" value="Submit" />
-                                <input class="submit-gray"  name="back" onclick="window.location='<?php echo URL::base(TRUE,TRUE);?>admin/<?php echo $type;?>/'" type="button" value="Back" />
-                            </fieldset>
+            <fieldset>
+                <ul>
+                    <?php switch ($action){  case 'add': ?>
+                <li><label><b><?php echo __("Активность",null); ?></b>&nbsp;&nbsp;<input type="checkbox" name="status" value="1" /></label></li>
+                    <?php break; case 'edit'; case 'update'; ?>    
+                <li><label><b><?php echo __("Активность",null); ?></b>&nbsp;&nbsp;<input type="checkbox" name="status" <?php if ($category['status']=='1'){       echo 'checked="checked"'; } ?> value="1" /></label></li>
+                    <?php break; }?> 
+                </ul>
+            </fieldset>
+            <fieldset>
+                <input class="submit-green" name="saved" type="submit" value="Submit" />
+                <input class="submit-gray"  name="back" onclick="window.location='<?php echo URL::base(TRUE,TRUE);?>admin/<?php echo $type;?>/'" type="button" value="Back" />
+            </fieldset>
             </form>
         </div> <!-- End .module-body -->
 

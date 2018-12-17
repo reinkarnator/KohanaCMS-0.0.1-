@@ -22,7 +22,6 @@
                         <?php foreach ($lang_count as $key => $langs) : $key++;?>     
                             <th style="width:11%"><?php echo __("Название на",null); ?><?php echo __("Язык".$key."",null); ?></th>
                         <?php endforeach; ?>                                      
-                                    <th style="width:30%"><?php echo __("Текст",null); ?></th>
                                     <th style="width:7%"><?php echo __("Активность",null); ?></th>
                                 </tr>
                             </thead>
@@ -39,7 +38,6 @@
                                     <td><?php echo ($material['title_'.$langs.'']) ? $material['title_'.$langs.''] : 'slider'.$k; ?></td>
                                 <?php endif; ?>      
                                 <?php endforeach; ?>             
-                                    <td><?php echo $material['text_'.$lang.'']; ?></td>
                                     <td align="center">
                                         <img src="<?php echo URL::base().'html/admin/images/status'.$material['status'].'.gif'; ?>" width="16" height="16" />
                                     <a href="<?php echo URL::base(TRUE,TRUE).'admin/slider/'.$material['id'].'-m/edit';?>"><img src="<?php echo URL::base().'html/admin/images/pencil.gif"'; ?>" width="16" height="16" /></a>

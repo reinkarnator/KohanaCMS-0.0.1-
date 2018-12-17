@@ -32,6 +32,23 @@ class Contacts extends Migration {
 				'options' => 'ENGINE=innoDB CHARSET=utf8'
 			)
 		);
+
+         $sql = DB::insert('contacts');
+         $col = array('phone','mob','email','map');
+         $val = array('','','','');
+
+         foreach ($langslist as $langs) {
+
+            $col[] = 'address_'.$langs;
+            $val[] = '';
+
+         }
+
+         $sql->columns($col); 
+         $sql->values($val); 
+
+         $sql->execute();
+	
 	}
 
 	public function down()

@@ -25,7 +25,7 @@ return array(
 	 * @param   string  sendmail: executable path, with -bs or equivalent attached
 	 * @param   array   smtp: hostname, (username), (password), (port), (encryption)
 	 */
-         'sendto' => 'othermail@othermail.com'
+         'sendto' => 'othermail@othermail.com',
          'options' => array('hostname' => 'smtp.gmail.com',
                                     'username' => 'yourmail@gmail.com',
                                     'password' => 'yourpass',
